@@ -62,6 +62,7 @@ app.post('/login', (req, res) => {
                 return res.status(401).json({ message: "Invalid email or password" });
             } else {
                 const isPasswordCorrect = await bcrypt.compare(password, data[0].password);
+                console.log(">>>>>", password, data[0].password, isPasswordCorrect, data);
                 if (isPasswordCorrect) {
                     const token = jwt.sign({ email: data[0].email, id: data[0].id }, secretKey, { expiresIn: '1h' }); 
                     res.json({ message: "Login successful", token: token });
