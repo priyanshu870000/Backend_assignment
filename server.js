@@ -8,7 +8,7 @@ const Port = 3001;
 const secretKey = 'priyanshu';
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://assignment-frontend-1.onrender.com',
     optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
