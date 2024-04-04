@@ -1,8 +1,8 @@
 const mysql = require('mysql');
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Shyam@2003',
-    database: 'w3villa'
+    host: 'sql6.freemysqlhosting.net',
+    user: 'sql6696737',
+    password: 'GsGqslNUIT',
+    database: 'sql6696737'
 })
 module.exports=db
