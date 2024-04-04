@@ -39,8 +39,7 @@ app.post('/signup', (req, res) => {
                                 console.log("error", err);
                                 res.status(500).json({ message: "Error inserting user into database" });
                             } else {
-                                console.log("aaaa", response);
-                                const token = jwt.sign({ email: email, id:1 }, secretKey, { expiresIn: '1h' }); 
+                                const token = jwt.sign({ email: email, id: response.insertId }, secretKey, { expiresIn: '1h' }); 
                                 res.json({ message: "Signup successful", token: token });
                             }
                         });
@@ -59,7 +58,7 @@ app.post('/login', (req, res) => {
             res.status(500).json({ message: "Something went wrong" });
         } else {
             if (data.length === 0) {
-                return res.status(401).json({ message: "Invalid email or password" });
+                return res.status(401).json({ message: "User Not Found." });
             } else {
                 const isPasswordCorrect = await bcrypt.compare(password, data[0].password);
                 console.log(">>>>>", password, data[0].password, isPasswordCorrect, data);
