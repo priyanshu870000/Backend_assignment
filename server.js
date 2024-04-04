@@ -59,14 +59,14 @@ app.post('/login', (req, res) => {
             res.status(500).json({ message: "Something went wrong" });
         } else {
             if (data.length === 0) {
-                res.json({ message: "Invalid email or password" });
+                return res.status(401).json({ message: "Invalid email or password" });
             } else {
                 const isPasswordCorrect = await bcrypt.compare(password, data[0].password);
                 if (isPasswordCorrect) {
                     const token = jwt.sign({ email: data[0].email, id: data[0].id }, secretKey, { expiresIn: '1h' }); 
                     res.json({ message: "Login successful", token: token });
                 } else {
-                    res.json({ message: "Invalid email or password" });
+                    return res.status(401).json({ message: "Invalid email or password" });
                 }
             }
         }
